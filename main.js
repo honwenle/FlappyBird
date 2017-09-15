@@ -28,6 +28,7 @@ function create() {
     webs.createMultiple(10, 'web');
     webs.setAll('outOfBoundsKill', true);
     webs.setAll('checkWorldBounds', true);
+    webs.setAll('body.immovable', true);
     game.time.events.loop(1200, createWeb, this);
 
     floor = game.add.tileSprite(0, game.height - 130, game.width, 130, 'floor');
@@ -36,13 +37,17 @@ function create() {
     floor.body.immovable = true;
 }
 function clickFly() {
-    bird.body.velocity.y = -320;
+    if (bird.alive) {
+        bird.body.velocity.y = -320;
+    } else {
+        bird.reset(game.width / 4, game.height / 2);
+        webs.setAll('x', -50);
+    }
 }
 function createWeb() {
     var offsetY = 50 + Math.random() * (game.height - 130 - 150 -100) | 0;
     var web = webs.getFirstExists(false);
     if (web) {
-        web.body.immovable = true;
         web.anchor.y = 1;
         web.reset(game.width,
             offsetY
@@ -51,7 +56,6 @@ function createWeb() {
     }
     web = webs.getFirstExists(false);
     if (web) {
-        web.body.immovable = true;
         web.anchor.y = 0;
         web.reset(game.width,
             offsetY + 150

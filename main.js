@@ -4,6 +4,7 @@ function preload() {
     game.load.image('floor', 'images/floor.jpg');
     game.load.image('sky', 'images/sky.jpg');
     game.load.image('web', 'images/web.png');
+    game.load.image('button', 'images/bt.png');
     game.load.spritesheet('bird', 'images/bird.png', 50, 40);
 }
 function create() {
@@ -35,14 +36,16 @@ function create() {
     floor.autoScroll(-150, 0);
     game.physics.arcade.enable(floor);
     floor.body.immovable = true;
+
+    btStart = game.add.button(game.width / 2, game.height/2, 'button', start, this, 2, 1, 0);
 }
 function clickFly() {
-    if (bird.alive) {
         bird.body.velocity.y = -320;
-    } else {
-        bird.reset(game.width / 4, game.height / 2);
-        webs.setAll('x', -50);
-    }
+}
+function start () {
+    bird.reset(game.width / 4, game.height / 2);
+    webs.setAll('x', -50);
+    btStart.visible = false;
 }
 function createWeb() {
     var offsetY = 50 + Math.random() * (game.height - 130 - 150 -100) | 0;
@@ -69,4 +72,5 @@ function update () {
 }
 function gameOver (bird, killer) {
     bird.kill();
+    btStart.visible = true;
 }

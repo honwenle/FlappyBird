@@ -1,5 +1,7 @@
 var game = new Phaser.Game('100', '100', Phaser.AUTO, '', { preload: preload, create: create, update: update});
-var bird, webs, floor;
+var bird, webs, floor, textScore;
+var score = 0,
+    high = localStorage.getItem('bird_high') || 0;
 function preload() {
     game.load.image('floor', 'images/floor.jpg');
     game.load.image('sky', 'images/sky.jpg');
@@ -38,6 +40,9 @@ function create() {
     floor.body.immovable = true;
 
     btStart = game.add.button(game.width / 2, game.height/2, 'button', start, this, 2, 1, 0);
+    textScore = game.add.text(game.width / 2, 30, score + '/' + high, { font: "30px Arial Black", fill: "#f00" });
+    btStart.anchor.x = .5;
+    textScore.anchor.x = .5;
 }
 function clickFly() {
         bird.body.velocity.y = -320;

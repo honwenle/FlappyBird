@@ -21,7 +21,7 @@ function create() {
     bird.animations.add('fly', [0, 1, 2], 10, true);
     bird.play('fly');
     game.physics.arcade.enable(bird);
-    bird.body.gravity.y = 800;
+    bird.body.gravity.y = 1000;
     bird.body.collideWorldBounds = true;
 
     game.input.onDown.add(clickFly, this);
@@ -45,7 +45,7 @@ function create() {
     textScore.anchor.x = .5;
 }
 function clickFly() {
-        bird.body.velocity.y = -300;
+        bird.body.velocity.y = -320;
 }
 function start () {
     webs.forEachAlive(function (web) {

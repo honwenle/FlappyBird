@@ -32,7 +32,7 @@ function create() {
     webs.setAll('outOfBoundsKill', true);
     webs.setAll('checkWorldBounds', true);
     webs.setAll('body.immovable', true);
-    game.time.events.loop(1200, createWeb, this);
+    game.time.events.loop(1250, createWeb, this);
 
     floor = game.add.tileSprite(0, game.height - 130, game.width, 130, 'floor');
     floor.autoScroll(-150, 0);
@@ -45,7 +45,7 @@ function create() {
     textScore.anchor.x = .5;
 }
 function clickFly() {
-        bird.body.velocity.y = -320;
+        bird.body.velocity.y = -300;
 }
 function start () {
     webs.forEachAlive(function (web) {

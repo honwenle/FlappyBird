@@ -98,4 +98,5 @@ function gameOver (bird, killer) {
         localStorage.setItem('bird_high', high);
         textScore.setText(score + '/' + high);
     }
+    document.title = '我的小鸟躲过了'+high+'张网';
 }
